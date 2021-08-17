@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
     public BoxCollider meleeArea;
     public GameObject bullet;
     public GameObject[] coins;
+    public AudioSource MisSound;
+    public AudioSource BulletChage;
     public bool isChase;
     public bool isAttack;
     public bool isDead = false;
@@ -127,6 +129,7 @@ public class Enemy : MonoBehaviour
                 GameObject insTantBullet = Instantiate(bullet, transform.position, transform.rotation);
                 Rigidbody rigidBullet = insTantBullet.GetComponent<Rigidbody>();
                 rigidBullet.velocity = transform.forward * 20;
+                MisSound.Play();
 
                 yield return new WaitForSeconds(2f);
                 break;

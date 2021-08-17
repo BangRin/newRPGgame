@@ -78,11 +78,13 @@ public class Boss : Enemy
         GameObject instantMissileA = Instantiate(missile, missilePortA.position, missilePortA.rotation);
         BossMissile bossMissileA = instantMissileA.GetComponent<BossMissile>();
         bossMissileA.target = target;
+        MisSound.Play();
 
         yield return new WaitForSeconds(0.3f);
         GameObject instantMissileB = Instantiate(missile, missilePortB.position, missilePortB.rotation);
         BossMissile bossMissileB = instantMissileB.GetComponent<BossMissile>();
         bossMissileB.target = target;
+        MisSound.Play();
 
         yield return new WaitForSeconds(2f);
 
@@ -94,6 +96,7 @@ public class Boss : Enemy
         isLook = false;
         anim.SetTrigger("doBigShot");
         Instantiate(bullet, transform.position, transform.rotation);
+        BulletChage.Play();
         yield return new WaitForSeconds(3f);
 
         isLook = true;

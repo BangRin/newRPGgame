@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject itemShop;
     public GameObject WeaponShop;
     public GameObject startZone;
+    public AudioSource BossStart;
     public int stage;
     public float playTime;
     public bool isBattle;
@@ -128,7 +129,7 @@ public class GameManager : MonoBehaviour
             enemy.target = player.transform;
             enemy.manager = this;
             boss = instantEnemy.GetComponent<Boss>();
-
+            BossStart.Play();
         }
         else
         {

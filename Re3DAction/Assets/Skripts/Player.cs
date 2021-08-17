@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     public GameManager manager;
 
     public AudioSource jumpSound;
+    public AudioSource CoinSound;
+    public AudioSource HeartSound;
 
     public int ammo;
     public int coin;
@@ -289,6 +291,7 @@ public class Player : MonoBehaviour
     {
         Debug.DrawRay(transform.position, transform.forward * 2.5f, Color.green);
         isBorder = Physics.Raycast(transform.position, transform.forward, 2.5f, LayerMask.GetMask("Wall"));
+        isBorder = Physics.Raycast(transform.position, transform.forward, 2.5f, LayerMask.GetMask("object"));
     }
 
     void FixedUpdate()
@@ -391,11 +394,13 @@ public class Player : MonoBehaviour
                     coin += item.value;
                     if (coin > maxCoin)
                         coin = maxCoin;
+                    CoinSound.Play();
                     break;
                 case Item.Type.Heart:
                     health += item.value;
                     if (health > maxHealth)
                         health = maxHealth;
+                    HeartSound.Play();
                     break;
                 case Item.Type.Grenade:
                     if (hasGrenades == maxHasGrenade)
@@ -426,7 +431,7 @@ public class Player : MonoBehaviour
         isDamage = true;
         foreach (MeshRenderer mesh in meshs)
         {
-            mesh.material.color = Color.yellow;
+            mesh.material.color = Color.red;
         }
         if (isBossAtk)
         {

@@ -17,6 +17,8 @@ public class Weapon : MonoBehaviour
     public GameObject bullet;
     public Transform bulletCasePos;
     public GameObject bulletCase;
+    public AudioSource shootingSd;
+    public AudioSource MeleeSound;
 
     public void Use()
     {
@@ -32,7 +34,8 @@ public class Weapon : MonoBehaviour
         }
     }
     IEnumerator Swing()
-    {
+    { 
+        MeleeSound.Play();
         yield return new WaitForSeconds(0.1f);
         meleeArea.enabled = true;
         trailEffect.enabled = true;
@@ -48,6 +51,7 @@ public class Weapon : MonoBehaviour
         GameObject instantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
         Rigidbody bulletRigid = instantBullet.GetComponent<Rigidbody>();
         bulletRigid.velocity = bulletPos.forward * 50;
+        shootingSd.Play();
 
         yield return null;
 
